@@ -19,11 +19,9 @@ import { reactive, ref } from 'vue';
     { id: 3, name: "Nguyen Van C" }
   ]);
 
-  console.log(a[0].name);
-  console.log(a[1].name);
-  console.log(a[2].name);
-
-  console.log(a);
+  const text = ref("");
+  const checked = ref(true);
+  console.log("re-render");
 </script>
 
 <template>
@@ -39,6 +37,16 @@ import { reactive, ref } from 'vue';
   <button @click="increment">
     Increment
   </button>
+
+  <div>
+    <p>Text : {{ text }}</p>
+    <input type="text" v-model="text" />
+  </div>
+
+  <div>
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{ checked }}</label>
+  </div>
   <p>
     {{ c.title }} by {{ c.author }}
   </p>

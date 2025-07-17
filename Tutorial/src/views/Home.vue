@@ -1,7 +1,6 @@
 <script setup>
-
 </script>
 
 <template>
-  <h1>The Welcome</h1>
+    <h1>Home Page</h1>
 </template>
