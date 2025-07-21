@@ -1,7 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router';
 import { ref } from 'vue';
-import TheWelcome from '@/components/TheWelcome.vue';
+import TheWelcome from '@/components/WelcomeItem.vue';
 const router = useRouter();
 
 const count = ref(0);
