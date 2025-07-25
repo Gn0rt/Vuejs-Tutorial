@@ -6,8 +6,14 @@ const todos = ref([
   { id: 3, text: 'Deploy the App', completed: false }
 ]);
 const newTodo = ref('');
+const error = ref(false);
 const handleCreateNewTodo = () => {
-  if (newTodo.value.trim() === '') return;
+  if (newTodo.value.trim() === '') {
+    error.value = true;
+    return;
+  } else {
+    error.value = false;
+  }
   todos.value.push({ id: todos.value.length + 1, text: newTodo.value, completed: false });
   newTodo.value = '';
 }
@@ -25,7 +31,16 @@ console.log(newTodo.value);
   <h1>Todo</h1>
   <div>
     <div>
-      <input type="text" v-model="newTodo" placeholder="Add a new todo" />
+      <p class="error" v-if="error">Không được để trống</p>
+      <input 
+        type="text" 
+        v-model="newTodo" 
+        :class="{'error-input' : error}" 
+        @input="error = false" 
+        placeholder="Add a new todo" 
+        @keyup.enter="handleCreateNewTodo"
+        autofocus
+      />
       <button class="btn" @click="handleCreateNewTodo">Add Todo</button>
     </div>
     <ul>
@@ -59,5 +74,17 @@ console.log(newTodo.value);
       &:hover {
         background-color: #d32f2f; /* Darker red */
       }
+    }
+    .error {
+      color: red;
+      font-weight: bold;
+      margin: 0;
+      font-size: 12px;
+      
+    }
+    .error-input {
+      border: 2px solid red;
+      outline: none;
+      box-shadow: 0 0 5px rgba(255, 0, 0, 0.3);
     }
 </style>
