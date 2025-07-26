@@ -47,6 +47,17 @@ const submit = () => {
     </div>
   </div>
 
+  <div :style="{marginTop: '10px'}">
+    <h2>Key Modifier</h2>
+    <input type="text" @keyup.enter="submit" placeholder="Nhập tên của bạn">
+
+    <!-- Tổ hợp phím alt+enter (win) / option+enter (macos) -->
+    <input type="text" @keyup.enter.alt="submit" placeholder="Nhập tuổi của bạn">
+
+    <button @click.shift="submit" placeholder="Nhập của bạn">Shift</button>
+
+  </div>
+
 
 </template>
 
