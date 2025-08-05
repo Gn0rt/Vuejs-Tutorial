@@ -21,6 +21,11 @@ const router = createRouter({
       path: '/before',
       name: 'before',
       component: () => import('../views/BeforeMount.vue'),
+    },
+    {
+      path: '/update',
+      name: 'update',
+      component: () => import('../views/Update.vue'),
     }
   ],
 })
