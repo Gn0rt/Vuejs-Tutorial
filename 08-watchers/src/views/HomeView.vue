@@ -1,5 +1,5 @@
 <script setup>
-  import { watch, ref } from 'vue';
+  import { watch, ref, reactive } from 'vue';
 
   const count = ref(0);
 
@@ -51,6 +51,21 @@
   watch([x, () => y.value + 1], async([newX, newY]) => {
     console.log(`x: ${newX}, y: ${newY}`);
   })
+  const user = reactive({
+    class: {
+      students: 0,
+      name: 'Nguyen Van A',
+      age: 18
+    }
+  })
+
+  watch(user, (user) => {
+    console.log(`User changed: ${JSON.stringify(user)}`);
+  }, {deep: true, immediate: true});
+
+  const changeUser = () => {
+    user.class.students++;
+  }
 </script>
 
 <template>
@@ -68,11 +83,19 @@
 
     <div>
       <h1>Các loại source của watch</h1>
-      <p>Getter function</p>
+      <p>Getter function, mảng</p>
       <p>Sum of x: {{ x }} and y: {{ y }} = {{ x + y }}</p>
       <button @click="incrementXY">Increment</button>
 
-      <p>Mảng</p>
+
+      <p>Deep: theo dõi sâu (arr, object lồng nhau)</p>
+      <div>
+        <p>Class: {{ user.class.name }}</p>
+        <p>Students: {{ user.class.students }}</p>
+        <p>Age: {{ user.class.age }}</p>
+        <p>JSON: {{ JSON.stringify(user) }}</p>
+      </div>
+      <button @click="changeUser">Change user</button>
       
     </div>
   </div>
