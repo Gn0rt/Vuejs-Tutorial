@@ -38,6 +38,19 @@
     }
   })
 
+  const x = ref(0);
+  const y = ref(0);
+  watch(() => x.value + y.value, async(sum) => {
+    // console.log(`Sum: ${sum}`);
+  })
+  const incrementXY = () => {
+    x.value++;
+    y.value++;
+  }
+
+  watch([x, () => y.value + 1], async([newX, newY]) => {
+    console.log(`x: ${newX}, y: ${newY}`);
+  })
 </script>
 
 <template>
@@ -51,6 +64,16 @@
       <input v-model="question" type="text" :disabled="isLoading">
       <p>Answer: {{ answer }}</p>
       <img :src="img" alt="">
+    </div>
+
+    <div>
+      <h1>Các loại source của watch</h1>
+      <p>Getter function</p>
+      <p>Sum of x: {{ x }} and y: {{ y }} = {{ x + y }}</p>
+      <button @click="incrementXY">Increment</button>
+
+      <p>Mảng</p>
+      
     </div>
   </div>
 
