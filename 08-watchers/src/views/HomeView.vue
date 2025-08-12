@@ -1,5 +1,5 @@
 <script setup>
-  import { watch, ref, reactive } from 'vue';
+  import { watch, ref, reactive, watchEffect } from 'vue';
 
   const count = ref(0);
 
@@ -66,6 +66,11 @@
   const changeUser = () => {
     user.class.students++;
   }
+
+  watchEffect(() => {
+    console.log(`WatchEffect: x = ${x.value}, y = ${y.value}, sum = ${x.value + y.value}`);
+  })
+
 </script>
 
 <template>
@@ -97,6 +102,10 @@
       </div>
       <button @click="changeUser">Change user</button>
       
+    </div>
+
+    <div>
+      <h1>WatchEffect</h1>
     </div>
   </div>
 
